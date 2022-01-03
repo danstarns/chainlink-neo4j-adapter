@@ -105,6 +105,8 @@ The Oracle will be a smart contract deployed to the blockchain and serve as an i
 
 For the purpose of the rest of this documentation we shall use the example of getting the longest title along Movie nodes. For this you should copy the toml below and add it as a job:
 
+> Change `YOUR_ORACLE_ADDRESS` to the address of the deployed oracle contract
+
 ```toml
 type = "directrequest"
 schemaVersion = 1
@@ -163,7 +165,7 @@ contract ExampleContract is ChainlinkClient {
     function getLongestMovieTitle(address oracle, string memory jobId) public {
         string memory query = "MATCH (m:Movie)"
         "WITH collect(m.title) as list"
-        "RETURN { longest: head(list) }";
+        "RETURN { result: head(list) }";
 
         Chainlink.Request memory req = buildChainlinkRequest(
             stringToBytes32(jobId),
@@ -209,9 +211,40 @@ Use the faucet to fund your Chainlink Node, Oracle and Example Contract.
 
 Request testnet LINK and ETH here: https://faucets.chain.link/
 
+### Seeding Neo4j
+
+Navigate to http://localhost:7474/browser/ login and then run the seed:
+
+```gql
+CREATE (:Movie {title: "The Matrix"})
+CREATE (:Movie {title: "The Matrix Reloaded"})
+CREATE (:Movie {title: "Forrest Gump"})
+```
+
 ### Preforming The Request
 
-TODO
+The request happens here in `ExampleContract.sol`:
+
+```
+function getLongestMovieTitle(address oracle, string memory jobId) public {
+    string memory query = "MATCH (m:Movie)"
+    "WITH collect(m.title) as list"
+    "RETURN { result: head(list) }";
+
+    Chainlink.Request memory req = buildChainlinkRequest(
+        stringToBytes32(jobId),
+        this,
+        this.fulfill.selector
+    );
+
+    req.add("query", query);
+
+    return sendChainlinkRequest(req, ORACLE_PAYMENT);
+}
+```
+
+Use the remix tab to interact with this function, evoke it with your Oracle address and Job id(auto created check jobs page).
+Wait some time until all the transactions have happened and check the contracts `longestMovieTitle` property.
 
 ## License
 

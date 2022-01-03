@@ -21,7 +21,7 @@ contract ExampleContract is ChainlinkClient {
     function getLongestMovieTitle(address oracle, string memory jobId) public {
         string memory query = "MATCH (m:Movie)"
         "WITH collect(m.title) as list"
-        "RETURN { longest: head(list) }";
+        "RETURN { result: head(list) }";
 
         Chainlink.Request memory req = buildChainlinkRequest(
             stringToBytes32(jobId),
