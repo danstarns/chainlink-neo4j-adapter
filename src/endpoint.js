@@ -17,7 +17,7 @@ async function endpoint(req, res) {
   try {
     const neo4jResponse = await Requester.request({
       baseURL: config.NEO4J_HTTP_URL,
-      url: `db/${config.NEO4J_DB}/tx/commit`,
+      url: `/db/${config.NEO4J_DB}/tx/commit`,
       method: "POST",
       data: {
         statements: [{ statement: query }],
