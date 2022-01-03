@@ -259,7 +259,10 @@ function getLongestMovieTitle(address oracle, string memory jobId) public {
 }
 ```
 
-Use the remix tab to interact with this function, evoke it with your Oracle address and Job id(auto created check jobs page).
+Use the remix tab to interact with this function, evoke it with your Oracle address and Job id.
+
+To find the Job ID check [http://localhost:6688/jobs/1/definition](http://localhost:6688/jobs/1/definition) and look for `externalJobID`. **Remove the dashes before supplying the jobId in remix.**
+
 Wait some time until all the transactions have happened and check the contracts `longestMovieTitle` property.
 
 ## License
