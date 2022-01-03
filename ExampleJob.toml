@@ -1,7 +1,7 @@
 type = "directrequest"
 schemaVersion = 1
 name = "select"
-contractAddress = "0x9f4501F0dD9bE5bf250Fe14741D9f626DddD84Ea"
+contractAddress = "YOUR_ORACLE_ADDRESS"
 maxTaskDuration = "0s"
 observationSource = """
     decode_log   [type="ethabidecodelog"
@@ -19,7 +19,7 @@ observationSource = """
                   data="{\\"requestId\\": $(decode_log.requestId), \\"payment\\": $(decode_log.payment), \\"callbackAddress\\": $(decode_log.callbackAddr), \\"callbackFunctionId\\": $(decode_log.callbackFunctionId), \\"expiration\\": $(decode_log.cancelExpiration), \\"data\\": $(encode_data)}"
                  ]
 
-    submit_tx [type="ethtx" to="0x9f4501F0dD9bE5bf250Fe14741D9f626DddD84Ea" data="$(encode_tx)"]
+    submit_tx [type="ethtx" to="YOUR_ORACLE_ADDRESS" data="$(encode_tx)"]
 
     decode_log -> decode_cbor -> adapter -> jsondecode -> encode_data -> encode_tx -> submit_tx
 """

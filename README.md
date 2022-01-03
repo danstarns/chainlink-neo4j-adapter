@@ -9,7 +9,6 @@ bytes32 public longestMovieTitle;
 
 uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY;
 
-
 function getLongestMovieTitle(address oracle, string memory jobId) public {
     string memory query = "MATCH (m:Movie)"
     "WITH collect(m.title) as list"
@@ -73,7 +72,7 @@ npm install
 
 The adapter relies on the environment variables:
 
-1. `EA_PORT`
+1. `EA_PORT` - HTTP port to server adapter on
 2. `NEO4J_HTTP_URL`
 3. `NEO4J_USER`
 4. `NEO4J_PASSWORD`
