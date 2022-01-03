@@ -51,7 +51,7 @@ Clone this repo:
 git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
 ```
 
-1. [Dependencies And Docker](#dependencies1.and1.docker)
+1. [Dependencies And Docker](#dependencies-and-docker)
    1. [env file](#env-file)
    2. [Running Docker](#running-docker)
 2. [Starting The Adapter](#starting-the-adapter)
@@ -61,7 +61,7 @@ git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
 6. [Deploying Contract](#deploying-contract)
 7. [Funding Addresses](#funding-addresses)
 8. [Seeding Neo4j](#seeding-neo4j)
-9.  [Preforming The Request](#preforming-the-request)
+9. [Preforming The Request](#preforming-the-request)
 
 ### Dependencies And Docker
 
