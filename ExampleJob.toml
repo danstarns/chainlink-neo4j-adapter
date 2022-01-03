@@ -1,0 +1,25 @@
+type = "directrequest"
+schemaVersion = 1
+name = "select"
+contractAddress = "0x9f4501F0dD9bE5bf250Fe14741D9f626DddD84Ea"
+maxTaskDuration = "0s"
+observationSource = """
+    decode_log   [type="ethabidecodelog"
+                  abi="OracleRequest(bytes32 indexed specId, address requester, bytes32 requestId, uint256 payment, address callbackAddr, bytes4 callbackFunctionId, uint256 cancelExpiration, uint256 dataVersion, bytes data)"
+                  data="$(jobRun.logData)"
+                  topics="$(jobRun.logTopics)"]
+    decode_cbor  [type="cborparse" data="$(decode_log.data)"]
+
+    adapter  [type="bridge" name="neo4j" requestData="{\\"id\\": $(jobSpec.externalJobID), \\"data\\":{\\"query\\": $(decode_cbor.query)}}"]
+    jsondecode [type="jsonparse" data="$(adapter)" path="data,result,result"]
+    encode_data  [type="ethabiencode" abi="(bytes32 value)" data="{ \\"value\\": $(jsondecode) }"]
+
+    encode_tx    [type="ethabiencode"
+                  abi="fulfillOracleRequest(bytes32 requestId, uint256 payment, address callbackAddress, bytes4 callbackFunctionId, uint256 expiration, bytes32 data)"
+                  data="{\\"requestId\\": $(decode_log.requestId), \\"payment\\": $(decode_log.payment), \\"callbackAddress\\": $(decode_log.callbackAddr), \\"callbackFunctionId\\": $(decode_log.callbackFunctionId), \\"expiration\\": $(decode_log.cancelExpiration), \\"data\\": $(encode_data)}"
+                 ]
+
+    submit_tx [type="ethtx" to="0x9f4501F0dD9bE5bf250Fe14741D9f626DddD84Ea" data="$(encode_tx)"]
+
+    decode_log -> decode_cbor -> adapter -> jsondecode -> encode_data -> encode_tx -> submit_tx
+"""
