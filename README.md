@@ -218,13 +218,18 @@ Compile this and then deploy it to your chosen network.
 
 ### Funding Addresses
 
-Use the faucet to fund your Chainlink Node, Oracle and Example Contract.
+Use the faucet to fund your Chainlink Node and Example Contract.
 
 Request testnet LINK and ETH here: https://faucets.chain.link/
 
 ### Seeding Neo4j
 
-Navigate to http://localhost:7474/browser/ login and then run the seed:
+Navigate to http://localhost:7474/browser/ login:
+
+1. username: neo4j
+2. password: test
+
+Then run the seed:
 
 ```gql
 CREATE (:Movie {title: "The Matrix"})
