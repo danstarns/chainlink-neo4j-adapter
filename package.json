@@ -1,0 +1,25 @@
+{
+  "name": "chainlink-neo4j-adapter",
+  "version": "1.0.0",
+  "description": "This contains an [external-adapter](https://docs.chain.link/docs/external-adapters/) for the [Neo4j Database](https://neo4j.com/). Host the adapter on your [Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node/) and query it using [Solidity](https://docs.soliditylang.org/en/v0.8.11/):",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danstarns/chainlink-neo4j-adapter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danstarns/chainlink-neo4j-adapter/issues"
+  },
+  "homepage": "https://github.com/danstarns/chainlink-neo4j-adapter#readme",
+  "dependencies": {
+    "@chainlink/external-adapter": "^0.2.6",
+    "express": "^4.17.2",
+    "neo4j-driver": "^4.4.1"
+  }
+}

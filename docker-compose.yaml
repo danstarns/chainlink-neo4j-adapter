@@ -1,0 +1,77 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES=_DB=chainlink
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+        
+  chainlink:
+    image: smartcontract/chainlink:1.0.0
+    env_file: .env
+    environment:
+      - ROOT=/chainlink
+      - LOG_LEVEL=debug
+      - MIN_OUTGOING_CONFIRMATIONS=2
+      - ETH_CHAIN_ID=${ETH_CHAIN_ID}
+      - LINK_CONTRACT_ADDRESS=${LINK_CONTRACT_ADDRESS}
+      - CHAINLINK_TLS_PORT=0
+      - SECURE_COOKIES=false
+      - GAS_UPDATER_ENABLED=true
+      - FEATURE_FLUX_MONITOR=true
+      - ALLOW_ORIGINS=*
+      - DATABASE_URL=postgresql://postgres:secret@postgres:5432/chainlink?sslmode=disable
+      - ETH_URL=${ETH_URL}
+      - DATABASE_TIMEOUT=0
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - 6688:6688
+    volumes:
+      - ./chainlink/:/chainlink/
+    command: node start --password /chainlink/.password --api /chainlink/.api
+
+  neo4j:
+    image: neo4j
+    ports:
+        - 7474:7474
+        - 7687:7687
+    environment:
+        - NEO4J_AUTH=neo4j/test
+    volumes:
+        - $HOME/neo4j/data:/data
+        - $HOME/neo4j/logs:/logs
+    healthcheck:
+        test: wget http://localhost:7474/browser -O -
+        interval: 1s
+        timeout: 1s
+        retries: 40 
+
+  adapter:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+        - 8080:8080
+    environment:
+      - EA_PORT=8080
+      - NEO4J_HTTP_URL=neo4j://neo4j:7474
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=test
+      - NEO4J_DB=db
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    
