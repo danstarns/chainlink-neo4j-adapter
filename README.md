@@ -4,6 +4,10 @@ This contains an [external-adapter](https://docs.chain.link/docs/external-adapte
 
 ![diagram](./docs/img/diagram.png)
 
+## Example Usage
+
+See the entire contract [here](./ExampleContract.sol).
+
 ```solidity
 using Chainlink for Chainlink.Request;
 
