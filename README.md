@@ -110,6 +110,8 @@ Once logged in you can now navigate to the `/bridges` page and add a bridge talk
 
 The Oracle will be a smart contract deployed to the blockchain and serve as an interface between our custom smart contract and thru our Chainlink Node and to this Adapter. Follow [this](https://docs.chain.link/docs/fulfilling-requests/#deploy-your-own-oracle-contract) tutorial and come back with the address of your deployed oracle.
 
+> Do not forget to also [Add your node to the Oracle contract](https://docs.chain.link/docs/fulfilling-requests/#add-your-node-to-the-oracle-contract)
+
 ### Adding Job To Chainlink Node
 
 For the purpose of the rest of this documentation we shall use the example of getting the longest title along Movie nodes. For this you should copy the toml below and add it as a job:
