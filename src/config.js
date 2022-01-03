@@ -1,6 +1,6 @@
 const {
   EA_PORT = "8080",
-  NEO4J_HTTP_URL = "http://localhost:7474/",
+  NEO4J_HTTP_URL = "http://localhost:7474",
   NEO4J_BOLT_URL = "bolt://localhost:7687",
   NEO4J_USER = "neo4j",
   NEO4J_PASSWORD = "test",
