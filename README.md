@@ -48,13 +48,17 @@ git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
 2. [Running Adapter](#starting_the_adapter)
    1. [Neo4j Database](https://neo4j.com/)
 
-You can use the docker-compose, in this repo, to setup all dependencies. Firstly you will need to copy the `./.env.example` file to `./.env` and adjust some required configuration:
+You can use the docker-compose, in this repo, to setup all dependencies! Follow steps 1. & 2.
+
+#### 1. .env file
+
+You will need to copy the `./.env.example` file to `./.env` and adjust some required configuration:
 
 1. `LINK_CONTRACT_ADDRESS` - The contract address where the LINK token lives.
 2. `ETH_CHAIN_ID` - What chain are you on
 3. `ETH_URL` - The web socket url to your Ethereum node for example `wss://rinkeby.infura.io/ws/v3/KEY_HERE`
 
-Then you can run:
+#### 2. Running Docker
 
 ```
 docker-compose up
