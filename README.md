@@ -51,21 +51,17 @@ Clone this repo:
 git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
 ```
 
-- [chainlink-neo4j-adapter](#chainlink-neo4j-adapter)
-  - [Example Usage](#example-usage)
-  - [Getting Started](#getting-started)
-    - [1. Dependencies And Docker](#1-dependencies-and-docker)
-      - [1. .env file](#1-env-file)
-      - [2 Running Docker](#2-running-docker)
-    - [2. Starting The Adapter](#2-starting-the-adapter)
-    - [3 Adding Bridge To Chainlink Node](#3-adding-bridge-to-chainlink-node)
-    - [4 Deploying Your Oracle](#4-deploying-your-oracle)
-    - [5 Adding Job To Chainlink Node](#5-adding-job-to-chainlink-node)
-    - [6 Deploying Contract](#6-deploying-contract)
-    - [7 Funding Addresses](#7-funding-addresses)
-    - [8 Seeding Neo4j](#8-seeding-neo4j)
-    - [9 Preforming The Request](#9-preforming-the-request)
-  - [License](#license)
+- [1. Dependencies And Docker](#1-dependencies-and-docker)
+  - [1. env file](#1-env-file)
+  - [2 Running Docker](#2-running-docker)
+- [2. Starting The Adapter](#2-starting-the-adapter)
+- [3 Adding Bridge To Chainlink Node](#3-adding-bridge-to-chainlink-node)
+- [4 Deploying Your Oracle](#4-deploying-your-oracle)
+- [5 Adding Job To Chainlink Node](#5-adding-job-to-chainlink-node)
+- [6 Deploying Contract](#6-deploying-contract)
+- [7 Funding Addresses](#7-funding-addresses)
+- [8 Seeding Neo4j](#8-seeding-neo4j)
+- [9 Preforming The Request](#9-preforming-the-request)
 
 ### 1. Dependencies And Docker
 
