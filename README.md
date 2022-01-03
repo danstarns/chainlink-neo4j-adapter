@@ -70,7 +70,7 @@ git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
 2. [Running Adapter](#starting_the_adapter)
    1. [Neo4j Database](https://neo4j.com/)
 
-You can use the docker-compose, in this repo, to setup all dependencies! Follow steps 1. & 2.
+You can use the docker-compose, in this repo, to setup all dependencies!
 
 #### .env file
 
