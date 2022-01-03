@@ -67,6 +67,7 @@ async function endpoint(req, res) {
 
     res.status(200).json(Requester.success(jobRunID, response));
   } catch (e) {
+    console.error(e);
     res.status(500).json(Requester.errored(jobRunID, e));
   }
 }
