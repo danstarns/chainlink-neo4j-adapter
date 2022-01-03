@@ -11,6 +11,8 @@ uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY;
 
 function getLongestMovieTitle(address oracle, string memory jobId) public {
     string memory query = "MATCH (m:Movie) "
+    "WITH m AS m "
+    "ORDER BY size(m.title) DESC "
     "WITH collect(m.title) as list "
     "RETURN { result: head(list) }";
 
@@ -175,6 +177,8 @@ contract ExampleContract is ChainlinkClient {
 
     function getLongestMovieTitle(address oracle, string memory jobId) public {
         string memory query = "MATCH (m:Movie) "
+        "WITH m AS m "
+        "ORDER BY size(m.title) DESC "
         "WITH collect(m.title) as list "
         "RETURN { result: head(list) }";
 
@@ -244,6 +248,8 @@ The request happens here in `ExampleContract.sol`:
 ```solidity
 function getLongestMovieTitle(address oracle, string memory jobId) public {
     string memory query = "MATCH (m:Movie)"
+    "WITH m AS m "
+    "ORDER BY size(m.title) DESC "
     "WITH collect(m.title) as list"
     "RETURN { result: head(list) }";
 
