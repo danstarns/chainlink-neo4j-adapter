@@ -1,11 +1,6 @@
 const { Requester } = require("@chainlink/external-adapter");
 const config = require("./config");
 
-const inputParameters = {
-  query: true,
-  //   TODO - params: false
-};
-
 const authToken = Buffer.from(
   `${config.NEO4J_USER}:${config.NEO4J_PASSWORD}`
 ).toString("base64");
