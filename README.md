@@ -43,13 +43,25 @@ function fulfill(bytes32 requestId, bytes32 answer)
 
 ## Getting Started
 
+Following along through the steps will show you how to; get dependencies running, deploy a Oracle contract, deploy a ExampleContract contract and interact with that ExampleContract triggering a call to Neo4j.
+
 Clone this repo:
 
 ```
 git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
 ```
 
-### Dependencies And Docker
+1. [Dependencies And Docker]()
+2. [Starting The Adapter]()
+3. [Adding Bridge To Chainlink Node]()
+4. [Deploying Your Oracle]()
+5. [Adding Job To Chainlink Node]()
+6. [Deploying Contract]()
+7. [Funding Addresses]()
+8. [Seeding Neo4j]()
+9. [Preforming The Request]()
+
+### 1. Dependencies And Docker
 
 1. [Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node/)
    1. [Postgres Database](https://www.postgresql.org/)
@@ -74,7 +86,7 @@ docker-compose up
 
 Now you can skip to [Adding Bridge To Chainlink Node](#adding-bridge-to-chainlink-node)
 
-### Starting The Adapter
+### 2. Starting The Adapter
 
 > If you are using the docker-compose then skip to [Adding Bridge To Chainlink Node](#adding-bridge-to-chainlink-node).
 
@@ -98,7 +110,7 @@ To run:
 npm start
 ```
 
-### Adding Bridge To Chainlink Node
+### 3. Adding Bridge To Chainlink Node
 
 You will need to have your [Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node/) running at this point, assuming you use the default config provided navigate to your Chainlink Operator, usually at http://localhost:6688, and login with the credentials:
 
@@ -114,13 +126,13 @@ Once logged in you can now navigate to the `/bridges` page and add a bridge talk
 
 ![create-bridge](./docs/img/create-bridge.png)
 
-### Deploying Your Oracle
+### 4. Deploying Your Oracle
 
 The Oracle will be a smart contract deployed to the blockchain and serve as an interface between our custom smart contract and thru our Chainlink Node and to this Adapter. Follow [this](https://docs.chain.link/docs/fulfilling-requests/#deploy-your-own-oracle-contract) tutorial and come back with the address of your deployed oracle.
 
 > Do not forget to also [Add your node to the Oracle contract](https://docs.chain.link/docs/fulfilling-requests/#add-your-node-to-the-oracle-contract)
 
-### Adding Job To Chainlink Node
+### 5. Adding Job To Chainlink Node
 
 For the purpose of the rest of this documentation we shall use the example of getting the longest title along Movie nodes. For this you should copy the toml below and add it as a job:
 
@@ -156,7 +168,7 @@ observationSource = """
 
 ![create-job](./docs/img/create-job.png)
 
-### Deploying Contract
+### 6. Deploying Contract
 
 Using the remix tab you used in 'Deploying Your Oracle' [here](https://docs.chain.link/docs/fulfilling-requests/#deploy-your-own-oracle-contract) create a new file called `MyContract.sol` and paste in the Solidity:
 
@@ -226,13 +238,13 @@ contract ExampleContract is ChainlinkClient {
 
 Compile this and then deploy it to your chosen network.
 
-### Funding Addresses
+### 7. Funding Addresses
 
 Use the faucet to fund your Chainlink Node and Example Contract.
 
 Request testnet LINK and ETH here: https://faucets.chain.link/
 
-### Seeding Neo4j
+### 8. Seeding Neo4j
 
 Navigate to http://localhost:7474/browser/ login:
 
@@ -247,7 +259,7 @@ CREATE (:Movie {title: "The Matrix Reloaded"})
 CREATE (:Movie {title: "Forrest Gump"})
 ```
 
-### Preforming The Request
+### 9. Preforming The Request
 
 The request happens here in `ExampleContract.sol`:
 
