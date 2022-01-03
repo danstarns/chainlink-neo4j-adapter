@@ -64,9 +64,11 @@ You will need to copy the `./.env.example` file to `./.env` and adjust some requ
 docker-compose up
 ```
 
-Now you can skip to [Adding Bridge To Chainlink Node](#Adding_Bridge_To_Chainlink_Node)
+Now you can skip to [Adding Bridge To Chainlink Node](#adding-bridge-to-chainlink-node)
 
 ### Starting The Adapter
+
+> If you are using the docker-compose then skip to [Adding Bridge To Chainlink Node](#adding-bridge-to-chainlink-node).
 
 You will need to have your [Neo4j Database](https://neo4j.com/) running at this point, then you should serve this adapter over HTTP, to do this run:
 
