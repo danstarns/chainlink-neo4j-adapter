@@ -225,7 +225,7 @@ CREATE (:Movie {title: "Forrest Gump"})
 
 The request happens here in `ExampleContract.sol`:
 
-```
+```solidity
 function getLongestMovieTitle(address oracle, string memory jobId) public {
     string memory query = "MATCH (m:Movie)"
     "WITH collect(m.title) as list"
