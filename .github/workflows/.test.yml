@@ -5,11 +5,9 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x]
-
     services:
       neo4j:
         image: neo4j
@@ -24,9 +22,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-       run: npm install
-       run: npm run test
-       env:
+      - run: npm install
+      - run: npm run test
+        env:
           NEO4J_HTTP_URL: http://localhost:7474/
           NEO4J_BOLT_URL: bolt://localhost:7687
           NEO4J_USER: neo4j
