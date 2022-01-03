@@ -12,7 +12,13 @@ const authToken = Buffer.from(
 
 async function endpoint(req, res) {
   const jobRunID = req.body.id || "1";
-  const query = req.body.data.query;
+  const query = req?.body?.data?.query;
+
+  if (typeof query !== "string") {
+    const error = new Error("query required");
+    console.error(error);
+    return res.status(500).send(Requester.errored(jobRunID, error));
+  }
 
   try {
     const neo4jResponse = await Requester.request({
