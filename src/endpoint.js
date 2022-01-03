@@ -37,22 +37,24 @@ async function endpoint(req, res) {
       );
     }
 
-    // Its expected to return a object shape from Neo4j,
-    // Not designed to return lots of rows but a single row with key and values.
-    // This is because a smart contract is expecting the fulfill function -
-    // to be called back with a single value.
-    // You should use the jsonparse job step to destruct the particular value this endpoint should return.
-    // Examples would be:
-    //      Longest Actor Name:
-    //      MATCH (a)
-    //      WITH collect(n.name) as list
-    //      RETURN { longest: head(list) }
-    // INVALID
-    //      MATCH (a)
-    //      RETURN a
-    // INVALID
-    //      RETURN rand()
-
+    /* 
+     Not designed to return lots of rows but a single row with key and values.
+     This is because a smart contract is expecting the fulfill function -
+      - to be called back with a single value.
+     You should use the jsondecode job step to destruct the particular value this endpoint should return.
+     Examples would be:
+      VALID:
+          MATCH (m:Movie)
+          WITH m AS m
+          ORDER BY size(m.title) DESC
+          WITH collect(m.title) as list
+          RETURN { result: head(list) }
+      INVALID
+          MATCH (a)
+          RETURN a
+      INVALID
+          RETURN rand()
+    */
     const formattedResponse = neo4jResponse.data.results[0].data[0].row[0];
 
     const response = {
