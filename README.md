@@ -51,15 +51,21 @@ Clone this repo:
 git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
 ```
 
-1. [Dependencies And Docker]()
-2. [Starting The Adapter]()
-3. [Adding Bridge To Chainlink Node]()
-4. [Deploying Your Oracle]()
-5. [Adding Job To Chainlink Node]()
-6. [Deploying Contract]()
-7. [Funding Addresses]()
-8. [Seeding Neo4j]()
-9. [Preforming The Request]()
+- [chainlink-neo4j-adapter](#chainlink-neo4j-adapter)
+  - [Example Usage](#example-usage)
+  - [Getting Started](#getting-started)
+    - [1. Dependencies And Docker](#1-dependencies-and-docker)
+      - [1. .env file](#1-env-file)
+      - [2 Running Docker](#2-running-docker)
+    - [2. Starting The Adapter](#2-starting-the-adapter)
+    - [3 Adding Bridge To Chainlink Node](#3-adding-bridge-to-chainlink-node)
+    - [4 Deploying Your Oracle](#4-deploying-your-oracle)
+    - [5 Adding Job To Chainlink Node](#5-adding-job-to-chainlink-node)
+    - [6 Deploying Contract](#6-deploying-contract)
+    - [7 Funding Addresses](#7-funding-addresses)
+    - [8 Seeding Neo4j](#8-seeding-neo4j)
+    - [9 Preforming The Request](#9-preforming-the-request)
+  - [License](#license)
 
 ### 1. Dependencies And Docker
 
@@ -78,7 +84,7 @@ You will need to copy the `./.env.example` file to `./.env` and adjust some requ
 2. `ETH_CHAIN_ID` - What chain are you on
 3. `ETH_URL` - The web socket url to your Ethereum node for example `wss://rinkeby.infura.io/ws/v3/KEY_HERE`
 
-#### 2. Running Docker
+#### 2 Running Docker
 
 ```
 docker-compose up
@@ -110,7 +116,7 @@ To run:
 npm start
 ```
 
-### 3. Adding Bridge To Chainlink Node
+### 3 Adding Bridge To Chainlink Node
 
 You will need to have your [Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node/) running at this point, assuming you use the default config provided navigate to your Chainlink Operator, usually at http://localhost:6688, and login with the credentials:
 
@@ -126,13 +132,13 @@ Once logged in you can now navigate to the `/bridges` page and add a bridge talk
 
 ![create-bridge](./docs/img/create-bridge.png)
 
-### 4. Deploying Your Oracle
+### 4 Deploying Your Oracle
 
 The Oracle will be a smart contract deployed to the blockchain and serve as an interface between our custom smart contract and thru our Chainlink Node and to this Adapter. Follow [this](https://docs.chain.link/docs/fulfilling-requests/#deploy-your-own-oracle-contract) tutorial and come back with the address of your deployed oracle.
 
 > Do not forget to also [Add your node to the Oracle contract](https://docs.chain.link/docs/fulfilling-requests/#add-your-node-to-the-oracle-contract)
 
-### 5. Adding Job To Chainlink Node
+### 5 Adding Job To Chainlink Node
 
 For the purpose of the rest of this documentation we shall use the example of getting the longest title along Movie nodes. For this you should copy the toml below and add it as a job:
 
@@ -168,7 +174,7 @@ observationSource = """
 
 ![create-job](./docs/img/create-job.png)
 
-### 6. Deploying Contract
+### 6 Deploying Contract
 
 Using the remix tab you used in 'Deploying Your Oracle' [here](https://docs.chain.link/docs/fulfilling-requests/#deploy-your-own-oracle-contract) create a new file called `MyContract.sol` and paste in the Solidity:
 
@@ -238,13 +244,13 @@ contract ExampleContract is ChainlinkClient {
 
 Compile this and then deploy it to your chosen network.
 
-### 7. Funding Addresses
+### 7 Funding Addresses
 
 Use the faucet to fund your Chainlink Node and Example Contract.
 
 Request testnet LINK and ETH here: https://faucets.chain.link/
 
-### 8. Seeding Neo4j
+### 8 Seeding Neo4j
 
 Navigate to http://localhost:7474/browser/ login:
 
@@ -259,7 +265,7 @@ CREATE (:Movie {title: "The Matrix Reloaded"})
 CREATE (:Movie {title: "Forrest Gump"})
 ```
 
-### 9. Preforming The Request
+### 9 Preforming The Request
 
 The request happens here in `ExampleContract.sol`:
 
