@@ -6,6 +6,7 @@ const authToken = Buffer.from(
 ).toString("base64");
 
 async function endpoint(req, res) {
+  console.log("body: ", req.body);
   const jobRunID = req.body.id || "1";
   const query = req?.body?.data?.query;
 
