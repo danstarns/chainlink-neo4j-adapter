@@ -35,6 +35,12 @@ function fulfill(bytes32 requestId, bytes32 answer)
 
 ## Getting Started
 
+Clone this repo:
+
+```
+git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
+```
+
 ### Dependencies And Docker
 
 1. [Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node/)
@@ -58,13 +64,7 @@ Now you can skip to [Adding Bridge To Chainlink Node](#Adding_Bridge_To_Chainlin
 
 ### Starting The Adapter
 
-You will need to have your [Neo4j Database](https://neo4j.com/) running at this point, then you should serve this adapter over HTTP. Clone the repo:
-
-```
-git clone https://github.com/danstarns/chainlink-neo4j-adapter.git
-```
-
-and then enter and run:
+You will need to have your [Neo4j Database](https://neo4j.com/) running at this point, then you should serve this adapter over HTTP, to do this run:
 
 ```
 npm install
