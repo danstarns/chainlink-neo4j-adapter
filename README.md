@@ -3,30 +3,34 @@
 This contains an [external-adapter](https://docs.chain.link/docs/external-adapters/) for the [Neo4j Database](https://neo4j.com/). Host the adapter on your [Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node/) and query it using [Solidity](https://docs.soliditylang.org/en/v0.8.11/):
 
 ```solidity
-public longestMovieTitle bytes32;
+using Chainlink for Chainlink.Request;
 
-function getLongestMovieTitle() public onlyOwner returns (bytes32 requestId) {
+bytes32 public longestMovieTitle;
+
+uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY;
+
+
+function getLongestMovieTitle(address oracle, string memory jobId) public {
     string memory query = "MATCH (m:Movie)"
-                          "WITH collect(m.title) as list"
-                          "RETURN { longest: head(list) }";
+    "WITH collect(m.title) as list"
+    "RETURN { result: head(list) }";
 
     Chainlink.Request memory req = buildChainlinkRequest(
-        SPEC_ID,
+        stringToBytes32(jobId),
         this,
         this.fulfill.selector
     );
 
     req.add("query", query);
 
-    return sendChainlinkRequest(req, oraclePayment);
+    return sendChainlinkRequest(req, ORACLE_PAYMENT);
 }
 
-
-function fulfill(bytes32 requestId, bytes32 response)
+function fulfill(bytes32 requestId, bytes32 answer)
     public
     recordChainlinkFulfillment(requestId)
 {
-    longestMovieTitle = response;
+    longestMovieTitle = answer;
 }
 ```
 
