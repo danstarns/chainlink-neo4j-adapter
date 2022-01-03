@@ -1,9 +1,10 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const config = require("./config");
 const endpoint = require("./endpoint");
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 app.post("/", endpoint);
 
 async function listen() {

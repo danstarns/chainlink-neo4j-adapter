@@ -20,6 +20,7 @@
   "homepage": "https://github.com/danstarns/chainlink-neo4j-adapter#readme",
   "dependencies": {
     "@chainlink/external-adapter": "^0.2.6",
+    "body-parser": "^1.19.1",
     "express": "^4.17.2",
     "neo4j-driver": "^4.4.1"
   },
