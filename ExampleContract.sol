@@ -25,13 +25,13 @@ contract ExampleContract is ChainlinkClient {
 
         Chainlink.Request memory req = buildChainlinkRequest(
             stringToBytes32(jobId),
-            this,
+            address(this),
             this.fulfill.selector
         );
 
         req.add("query", query);
 
-        return sendChainlinkRequest(req, ORACLE_PAYMENT);
+        bytes32 requestId = sendChainlinkRequest(req, ORACLE_PAYMENT);
     }
 
     function fulfill(bytes32 requestId, bytes32 answer)
