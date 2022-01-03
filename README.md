@@ -22,7 +22,7 @@ function getLongestMovieTitle(address oracle, string memory jobId) public {
 
     req.add("query", query);
 
-    bytes32 requestId = sendChainlinkRequest(req, ORACLE_PAYMENT);
+    bytes32 requestId = sendChainlinkRequestTo(oracle, req, ORACLE_PAYMENT);
 }
 
 function fulfill(bytes32 requestId, bytes32 answer)
@@ -255,7 +255,7 @@ function getLongestMovieTitle(address oracle, string memory jobId) public {
 
     req.add("query", query);
 
-    bytes32 requestId = sendChainlinkRequest(req, ORACLE_PAYMENT);
+    bytes32 requestId = sendChainlinkRequestTo(oracle, req, ORACLE_PAYMENT);
 }
 ```
 

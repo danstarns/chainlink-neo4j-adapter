@@ -1,4 +1,4 @@
-const { Requester, Validator } = require("@chainlink/external-adapter");
+const { Requester } = require("@chainlink/external-adapter");
 const config = require("./config");
 
 const inputParameters = {
@@ -11,15 +11,10 @@ const authToken = Buffer.from(
 ).toString("base64");
 
 async function endpoint(req, res) {
-  const validator = new Validator(req.body, inputParameters);
-  const jobRunID = validator.validated.jobRunID;
-  const query = validator.validated.data.query;
+  const jobRunID = req.body.id;
+  const query = req.body.data.query;
 
   try {
-    // if (validator.error) {
-    //   throw validator.error;
-    // }
-
     const neo4jResponse = await Requester.request({
       baseURL: config.NEO4J_HTTP_URL,
       url: `db/${config.NEO4J_DB}/tx/commit`,
