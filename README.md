@@ -2,6 +2,8 @@
 
 This contains an [external-adapter](https://docs.chain.link/docs/external-adapters/) for the [Neo4j Database](https://neo4j.com/). Host the adapter on your [Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node/) and query it using [Solidity](https://docs.soliditylang.org/en/v0.8.11/):
 
+![diagram](./docs/img/diagram.png)
+
 ```solidity
 using Chainlink for Chainlink.Request;
 
