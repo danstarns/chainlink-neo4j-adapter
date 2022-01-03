@@ -6,13 +6,11 @@ const authToken = Buffer.from(
 ).toString("base64");
 
 async function endpoint(req, res) {
-  console.log("body: ", req.body);
   const jobRunID = req.body.id || "1";
   const query = req?.body?.data?.query;
 
   if (typeof query !== "string") {
     const error = new Error("query required");
-    console.error(error);
     return res.status(500).send(Requester.errored(jobRunID, error));
   }
 
@@ -69,7 +67,6 @@ async function endpoint(req, res) {
 
     res.status(200).json(Requester.success(jobRunID, response));
   } catch (e) {
-    console.error(e);
     res.status(500).json(Requester.errored(jobRunID, e));
   }
 }
