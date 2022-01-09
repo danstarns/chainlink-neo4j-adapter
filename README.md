@@ -1,5 +1,7 @@
 # chainlink-neo4j-adapter
 
+Blog Post: https://medium.com/@danstarns/using-chainlink-to-interface-with-neo4j-from-within-an-ethereum-smart-contract-64cdf59808a8
+
 This contains an [external-adapter](https://docs.chain.link/docs/external-adapters/) for the [Neo4j Database](https://neo4j.com/). Host the adapter on your [Chainlink Node](https://docs.chain.link/docs/running-a-chainlink-node/) and query it using [Solidity](https://docs.soliditylang.org/en/v0.8.11/):
 
 ![diagram](./docs/img/diagram.png)
