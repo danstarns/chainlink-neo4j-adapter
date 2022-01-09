@@ -21,10 +21,10 @@
   "dependencies": {
     "@chainlink/external-adapter": "^0.2.6",
     "body-parser": "^1.19.1",
-    "express": "^4.17.2",
-    "neo4j-driver": "^4.4.1"
+    "express": "^4.17.2"
   },
   "devDependencies": {
+    "neo4j-driver": "^4.4.1",
     "jest": "26.6.3",
     "randomstring": "^1.1.5",
     "supertest": "^6.1.3"
